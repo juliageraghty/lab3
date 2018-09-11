@@ -30,9 +30,9 @@ public class AccountController {
     @PostMapping("amazoncommerce/account/load")
     public Account createAccount() {
         Set<Address> adressSet = new HashSet<>();
-        Address address = new Address((long) 2, "St. Louis", "10337", "Chicago", "IL", "60655", "USA");
+        Address address = new Address((long)3, "Trumbul", "10637", "Evergreen Park", "IL", "60655", "USA");
         adressSet.add(address);
-        Account account = new Account((long) 3, "Amy", "Geraghty", "ageraghty@aol.com", adressSet);
+        Account account = new Account((long) 4, "Maeve", "Burke", "mburke@aol.com", adressSet);
         Account accountSaved = accountService.save(account);
         return accountSaved;
     }

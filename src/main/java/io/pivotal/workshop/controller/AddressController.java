@@ -24,7 +24,7 @@ public class AddressController {
 
     @PostMapping("amazoncommerce/address/load")
     public Address createAddress() {
-        Address address = new Address((long) 2, "St. Louis", "10337", "Chicago", "IL", "60655", "USA");
+        Address address = new Address((long)3, "Trumbul", "10637", "Evergreen Park", "IL", "60655", "USA");
         Address addressSaved = addressService.save(address);
         return addressSaved;
     }

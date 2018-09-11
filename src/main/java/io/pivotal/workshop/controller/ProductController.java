@@ -4,10 +4,7 @@ import io.pivotal.workshop.domain.*;
 import io.pivotal.workshop.service.ProductService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 @RestController
@@ -26,7 +23,7 @@ public class ProductController {
 
     @PostMapping("amazoncommerce/product/load")
     public Product createProduct() throws ParseException {
-        Product product = new Product((long)2, "iPhone", "Apple Product", "pic", (long)300);
+        Product product = new Product((long)3, "Mac", "Apple Product", "pic", (long)1000);
         productService.save(product);
         return product;
     }
