@@ -10,11 +10,18 @@ public class OrderLineItem {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @OneToOne
+    @JoinColumn(name = "PRODUCT_ID")
     Product product;
-    Long quantity;
+
+    String quantity;
     Long price;
+
     @Column(name= "total_price", nullable = false)
     Long totalPrice;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "SHIPMENT_ID", nullable = false)
     Shipment shipment;
 
     public Long getId() {
@@ -33,11 +40,11 @@ public class OrderLineItem {
         this.product = product;
     }
 
-    public Long getQuantity() {
+    public String getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(Long quantity) {
+    public void setQuantity(String quantity) {
         this.quantity = quantity;
     }
 

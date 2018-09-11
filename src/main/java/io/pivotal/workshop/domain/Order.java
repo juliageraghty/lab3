@@ -2,7 +2,9 @@ package io.pivotal.workshop.domain;
 
 
 import javax.persistence.*;
-import java.sql.Date;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "ORDER_TABLE")
@@ -11,15 +13,24 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ACCOUNT_ID", nullable = false)
     Account account;
+
     @Column(name= "order_number", nullable = false)
     Long orderNumber;
-    @Column(name= "order_date", nullable = false)
+
     @Temporal(TemporalType.DATE)
+    @Column(name= "order_date", nullable = false)
     Date orderDate;
-    Address address;
-    @Column(name= "order_line_item", nullable = false)
-    OrderLineItem orderLineItem;
+
+    @OneToOne
+    @JoinColumn(name = "SHIPPING_ADDRESS_ID", nullable = false)
+    private Address shippingAddress;
+
+    @OneToMany(fetch = FetchType.LAZY)
+    private Set<OrderLineItem> orderLineItems = new HashSet<>();
+
     @Column(name= "total_price", nullable = false)
     Long totalPrice;
 
@@ -56,19 +67,19 @@ public class Order {
     }
 
     public Address getAddress() {
-        return address;
+        return shippingAddress;
     }
 
     public void setAddress(Address address) {
-        this.address = address;
+        this.shippingAddress = shippingAddress;
     }
 
-    public OrderLineItem getOrderLineItem() {
-        return orderLineItem;
+    public Set<OrderLineItem> getOrderLineItem() {
+        return orderLineItems;
     }
 
-    public void setOrderLineItem(OrderLineItem orderLineItem) {
-        this.orderLineItem = orderLineItem;
+    public void setOrderLineItem(Set<OrderLineItem> orderLineItems) {
+        this.orderLineItems = orderLineItems;
     }
 
     public Long getTotalPrice() {

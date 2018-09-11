@@ -1,7 +1,11 @@
 package io.pivotal.workshop.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "ACCOUNT_TABLE")
@@ -17,7 +21,12 @@ public class Account {
     @Column(name= "last_name", nullable = false)
     String lastName;
 
-    Address address;
+    @Column(name = "email_address", nullable = false)
+    String emailAddress;
+
+    @OneToMany(fetch = FetchType.LAZY)
+    @JsonIgnore
+    private Set<Address> addresses = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -43,11 +52,19 @@ public class Account {
         this.lastName = lastName;
     }
 
-    public Address getAddresss() {
-        return address;
+    public Set<Address> getAddresses() {
+        return addresses;
     }
 
-    public void setAddresss(Address addresss) {
-        this.address = addresss;
+    public void setAddresses(Set<Address> addresses) {
+        this.addresses = addresses;
+    }
+
+    public String getEmailAddress() {
+        return emailAddress;
+    }
+
+    public void setEmailAddress(String emailAddress) {
+        this.emailAddress = emailAddress;
     }
 }

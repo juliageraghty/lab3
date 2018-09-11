@@ -2,7 +2,9 @@ package io.pivotal.workshop.domain;
 
 
 import javax.persistence.*;
-import java.sql.Date;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "SHIPMENT_TABLE")
@@ -11,11 +13,20 @@ public class Shipment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    Account account;
-    Address address;
-    OrderLineItem orderLineItem;
+    @OneToOne
+    @JoinColumn(name = "ACCOUNT_ID", nullable = false)
+    private Account account;
+
+    @OneToOne
+    @JoinColumn(name = "SHIPPING_ADDRESS_ID", nullable = false)
+    private Address shippingAddress;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "shipment")
+    private Set<OrderLineItem> orderLineItems = new HashSet<>();
+
     @Temporal(TemporalType.DATE)
     Date shippedDate;
+
     @Temporal(TemporalType.DATE)
     Date deliveryDate;
 
@@ -36,19 +47,19 @@ public class Shipment {
     }
 
     public Address getAddress() {
-        return address;
+        return shippingAddress;
     }
 
-    public void setAddress(Address address) {
-        this.address = address;
+    public void setAddress(Address shippingAddress) {
+        this.shippingAddress = shippingAddress;
     }
 
-    public OrderLineItem getOrderLineItem() {
-        return orderLineItem;
+    public Set<OrderLineItem> getOrderLineItem() {
+        return orderLineItems;
     }
 
-    public void setOrderLineItem(OrderLineItem orderLineItem) {
-        this.orderLineItem = orderLineItem;
+    public void setOrderLineItem(Set<OrderLineItem> orderLineItems) {
+        this.orderLineItems = orderLineItems;
     }
 
     public Date getShippedDate() {
