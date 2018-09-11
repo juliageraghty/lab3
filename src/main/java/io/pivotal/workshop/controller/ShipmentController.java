@@ -33,16 +33,16 @@ public class ShipmentController {
 
         Account account = new Account((long)3, "Amy", "Geraghty", "ageraghty@aol.com", addressSet);
 
-        String string = "2018-10-22";
+        String string = "2005-05-05";
         DateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
         Date date = format.parse(string);
 
-        Product product = new Product((long)1, "iPad", "Apple Product", "pic", (long)200);
+        Product product = new Product((long)1, "iPhone", "Apple Product", "pic", (long)300);
 
         Set<OrderLineItem> orderLineItems = new HashSet<>();
-        Shipment shipment = new Shipment((long)1,account, address, orderLineItems, date, date);
-        OrderLineItem ipads = new OrderLineItem((long)1, product, 2, (long)3, (long) (2*3), null);
-        orderLineItems.add(ipads);
+        Shipment shipment = new Shipment((long)3,account, address, orderLineItems, date, date);
+        OrderLineItem iphones = new OrderLineItem((long)2, product, 6, (long)3, (long) (6*3), null);
+        orderLineItems.add(iphones);
         shipmentService.save(shipment);
         return shipment;
     }

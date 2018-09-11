@@ -26,7 +26,7 @@ public class ProductController {
 
     @PostMapping("amazoncommerce/product/load")
     public Product createProduct() throws ParseException {
-        Product product = new Product((long)1, "iPad", "Apple Product", "pic", (long)200);
+        Product product = new Product((long)2, "iPhone", "Apple Product", "pic", (long)300);
         productService.save(product);
         return product;
     }
