@@ -67,4 +67,14 @@ public class Account {
     public void setEmailAddress(String emailAddress) {
         this.emailAddress = emailAddress;
     }
+
+    public Account(Long id, String firstName, String lastName, String emailAddress, Set<Address> addresses) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.emailAddress = emailAddress;
+        this.addresses = addresses;
+    }
+
+    public Account() { super();}
 }

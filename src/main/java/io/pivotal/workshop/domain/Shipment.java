@@ -1,6 +1,8 @@
 package io.pivotal.workshop.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.HashSet;
@@ -21,7 +23,8 @@ public class Shipment {
     @JoinColumn(name = "SHIPPING_ADDRESS_ID", nullable = false)
     private Address shippingAddress;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "shipment")
+    @OneToMany(fetch = FetchType.LAZY)
+    @JsonIgnore
     private Set<OrderLineItem> orderLineItems = new HashSet<>();
 
     @Temporal(TemporalType.DATE)
@@ -77,4 +80,15 @@ public class Shipment {
     public void setDeliveryDate(Date deliveryDate) {
         this.deliveryDate = deliveryDate;
     }
+
+    public Shipment(Long id, Account account, Address shippingAddress, Set<OrderLineItem> orderLineItems, Date shippedDate, Date deliveryDate) {
+        this.id = id;
+        this.account = account;
+        this.shippingAddress = shippingAddress;
+        this.orderLineItems = orderLineItems;
+        this.shippedDate = shippedDate;
+        this.deliveryDate = deliveryDate;
+    }
+
+    Shipment() { super(); }
 }

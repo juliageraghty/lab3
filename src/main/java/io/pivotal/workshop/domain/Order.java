@@ -1,6 +1,8 @@
 package io.pivotal.workshop.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.HashSet;
@@ -15,6 +17,7 @@ public class Order {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ACCOUNT_ID", nullable = false)
+    @JsonIgnore
     Account account;
 
     @Column(name= "order_number", nullable = false)
@@ -26,9 +29,11 @@ public class Order {
 
     @OneToOne
     @JoinColumn(name = "SHIPPING_ADDRESS_ID", nullable = false)
+    @JsonIgnore
     private Address shippingAddress;
 
     @OneToMany(fetch = FetchType.LAZY)
+    @JsonIgnore
     private Set<OrderLineItem> orderLineItems = new HashSet<>();
 
     @Column(name= "total_price", nullable = false)
@@ -89,4 +94,16 @@ public class Order {
     public void setTotalPrice(Long totalPrice) {
         this.totalPrice = totalPrice;
     }
+
+    public Order(Long id, Account account, Long orderNumber, Date orderDate, Address shippingAddress, Set<OrderLineItem> orderLineItems, Long totalPrice) {
+        this.id = id;
+        this.account = account;
+        this.orderNumber = orderNumber;
+        this.orderDate = orderDate;
+        this.shippingAddress = shippingAddress;
+        this.orderLineItems = orderLineItems;
+        this.totalPrice = totalPrice;
+    }
+
+    Order() {super();}
 }

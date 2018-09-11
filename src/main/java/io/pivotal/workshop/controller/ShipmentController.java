@@ -1,13 +1,15 @@
 package io.pivotal.workshop.controller;
 
-import io.pivotal.workshop.domain.Product;
-import io.pivotal.workshop.domain.Shipment;
+import io.pivotal.workshop.domain.*;
 import io.pivotal.workshop.service.ProductService;
 import io.pivotal.workshop.service.ShipmentService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 @RestController
 public class ShipmentController {
@@ -21,6 +23,28 @@ public class ShipmentController {
     public Shipment createShipment(@RequestBody Shipment shipment) {
         Shipment shipmentSaved = shipmentService.save(shipment);
         return shipmentSaved;
+    }
+
+    @PostMapping("amazoncommerce/shipment/load")
+    public Shipment createProduct() throws ParseException {
+        Set<Address> addressSet = new HashSet<>();
+        Address address = new Address((long) 2, "St. Louis", "10337", "Chicago", "IL", "60655", "USA");
+        addressSet.add(address);
+
+        Account account = new Account((long)3, "Amy", "Geraghty", "ageraghty@aol.com", addressSet);
+
+        String string = "2018-10-22";
+        DateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+        Date date = format.parse(string);
+
+        Product product = new Product((long)1, "iPad", "Apple Product", "pic", (long)200);
+
+        Set<OrderLineItem> orderLineItems = new HashSet<>();
+        Shipment shipment = new Shipment((long)1,account, address, orderLineItems, date, date);
+        OrderLineItem ipads = new OrderLineItem((long)1, product, 2, (long)3, (long) (2*3), null);
+        orderLineItems.add(ipads);
+        shipmentService.save(shipment);
+        return shipment;
     }
 
     @GetMapping("amazoncommerce/shipment/{shipmentId}")

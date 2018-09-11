@@ -54,4 +54,14 @@ public class Product {
     public void setPrice(Long price) {
         this.price = price;
     }
+
+    public Product(Long id, String name, String description, String image, Long price) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.image = image;
+        this.price = price;
+    }
+
+    Product() { super(); }
 }

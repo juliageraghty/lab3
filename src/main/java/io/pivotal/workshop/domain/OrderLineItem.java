@@ -1,6 +1,8 @@
 package io.pivotal.workshop.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -14,14 +16,14 @@ public class OrderLineItem {
     @JoinColumn(name = "PRODUCT_ID")
     Product product;
 
-    String quantity;
+    Integer quantity;
     Long price;
 
     @Column(name= "total_price", nullable = false)
     Long totalPrice;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "SHIPMENT_ID", nullable = false)
+    @ManyToOne
+    @JsonIgnore
     Shipment shipment;
 
     public Long getId() {
@@ -40,11 +42,11 @@ public class OrderLineItem {
         this.product = product;
     }
 
-    public String getQuantity() {
+    public Integer getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(String quantity) {
+    public void setQuantity(Integer quantity) {
         this.quantity = quantity;
     }
 
@@ -57,11 +59,8 @@ public class OrderLineItem {
     }
 
     public Long getTotalPrice() {
-        return totalPrice;
-    }
-
-    public void setTotalPrice(Long totalPrice) {
-        this.totalPrice = totalPrice;
+        long longPrice = price * quantity;
+        return  longPrice;
     }
 
     public Shipment getShipment() {
@@ -71,4 +70,20 @@ public class OrderLineItem {
     public void setShipment(Shipment shipment) {
         this.shipment = shipment;
     }
+
+    public void setTotalPrice(Long totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
+
+    public OrderLineItem(Long id, Product product, Integer quantity, Long price, Long totalPrice, Shipment shipment) {
+        this.id = id;
+        this.product = product;
+        this.quantity = quantity;
+        this.price = price;
+        this.totalPrice = totalPrice;
+        this.shipment = shipment;
+    }
+
+    OrderLineItem() { super(); }
 }
