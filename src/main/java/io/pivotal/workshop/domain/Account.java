@@ -17,7 +17,7 @@ public class Account {
     @Column(name= "last_name", nullable = false)
     String lastName;
 
-    Address addresss;
+    Address address;
 
     public Long getId() {
         return id;
@@ -44,10 +44,10 @@ public class Account {
     }
 
     public Address getAddresss() {
-        return addresss;
+        return address;
     }
 
     public void setAddresss(Address addresss) {
-        this.addresss = addresss;
+        this.address = addresss;
     }
 }

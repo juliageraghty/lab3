@@ -7,17 +7,20 @@ import java.sql.Date;
 @Entity
 @Table()
 public class Order {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     Account account;
+    @Column(name= "order_number", nullable = false)
     Long orderNumber;
+    @Column(name= "order_date", nullable = false)
     @Temporal(TemporalType.DATE)
     Date orderDate;
     Address address;
+    @Column(name= "order_line_item", nullable = false)
     OrderLineItem orderLineItem;
+    @Column(name= "total_price", nullable = false)
     Long totalPrice;
 
     public Long getId() {

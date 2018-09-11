@@ -6,7 +6,6 @@ import javax.persistence.*;
 @Entity
 @Table()
 public class OrderLineItem {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -14,6 +13,7 @@ public class OrderLineItem {
     Product product;
     Long quantity;
     Long price;
+    @Column(name= "total_price", nullable = false)
     Long totalPrice;
     Shipment shipment;
 
