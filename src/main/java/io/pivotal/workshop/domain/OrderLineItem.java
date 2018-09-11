@@ -4,7 +4,7 @@ package io.pivotal.workshop.domain;
 import javax.persistence.*;
 
 @Entity
-@Table()
+@Table(name = "ORDER_LINE_ITEM_TABLE")
 public class OrderLineItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

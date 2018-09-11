@@ -4,7 +4,7 @@ package io.pivotal.workshop.domain;
 import javax.persistence.*;
 
 @Entity
-@Table()
+@Table(name = "ACCOUNT_TABLE")
 public class Account {
 
     @Id

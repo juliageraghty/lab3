@@ -4,7 +4,7 @@ package io.pivotal.workshop.domain;
 import javax.persistence.*;
 
 @Entity
-@Table()
+@Table(name = "PRODUCT_TABLE")
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
