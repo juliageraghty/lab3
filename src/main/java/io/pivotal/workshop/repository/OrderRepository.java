@@ -6,12 +6,12 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
 
-import java.sql.PreparedStatement;
 import java.util.List;
 
 public interface OrderRepository extends PagingAndSortingRepository<Order, Long> {
 
-    String query = "SELECT o.id, o.account_id, o.order_number, o.order_date, o.shipping_address_id, o.total_price FROM amazonTable.order_table o WHERE o.account_id=:account_id";
+    String query = "SELECT o.id, o.account_id, o.order_number, o.order_date, o.shipping_address_id, o.total_price " +
+            "FROM amazonTable.order_table o WHERE o.account_id=:account_id ORDER BY o.order_date DESC";
 
     String query2 = "SELECT order_number, shipping_address_id, total_price, (SELECT order_line_items_id FROM amazonTable.order_table_order_line_items AS orderLineItems) FROM amazonTable.order_table WHERE account_id = ?1";
 
