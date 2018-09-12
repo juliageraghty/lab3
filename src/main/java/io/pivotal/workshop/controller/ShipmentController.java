@@ -54,6 +54,11 @@ public class ShipmentController {
         return shipment;
     }
 
+    @GetMapping("amazoncommerce/shipmentsByAccount/{accountId}")
+    public List<Shipment> queryShipmentsByAccount(@PathVariable("accountId") Long accountId) {
+        return shipmentService.queryShipmentsByAccount(accountId);
+    }
+
     @PutMapping("amazoncommerce/shipment/{shipmentId}")
     public Shipment updateShipment(@RequestBody Shipment shipment) {
         Shipment shipmentUpdated = shipmentService.save(shipment);

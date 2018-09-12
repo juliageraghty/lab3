@@ -53,6 +53,11 @@ public class OrderController {
         return orderService.queryOrdersByAccount(accountId);
     }
 
+//    @GetMapping("amazoncommerce/orderDetailsByAccount/{accountId}")
+//    public Object queryOrderDetailsByAccount(@PathVariable("accountId") Long accountId) {
+//        return orderService.queryOrderDetailsByAccount(accountId);
+//    }
+
     @GetMapping("amazoncommerce/order/{orderId}")
     public Order get(@PathVariable("orderId") Long orderId) {
         Optional<Order> orderRetrieved = orderService.getOrder(orderId);

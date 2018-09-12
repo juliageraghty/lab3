@@ -1,6 +1,7 @@
 package io.pivotal.workshop.service;
 
 import io.pivotal.workshop.domain.Order;
+import io.pivotal.workshop.domain.OrderDetails;
 import io.pivotal.workshop.repository.OrderRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -37,6 +38,6 @@ public class OrderService {
         return orderRepository.queryOrdersByAccount(accountId);
     }
 
-
+//    public Object queryOrderDetailsByAccount(Long accountId) { return orderRepository.queryOrderDetailsByAccount(accountId);}
 
 }

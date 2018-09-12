@@ -28,10 +28,10 @@ public class Shipment {
     private Set<OrderLineItem> orderLineItems = new HashSet<>();
 
     @Temporal(TemporalType.DATE)
-    Date shippedDate;
+    Date shipped_date;
 
     @Temporal(TemporalType.DATE)
-    Date deliveryDate;
+    Date delivery_date;
 
     public Long getId() {
         return id;
@@ -66,28 +66,28 @@ public class Shipment {
     }
 
     public Date getShippedDate() {
-        return shippedDate;
+        return shipped_date;
     }
 
     public void setShippedDate(Date shippedDate) {
-        this.shippedDate = shippedDate;
+        this.shipped_date = shippedDate;
     }
 
     public Date getDeliveryDate() {
-        return deliveryDate;
+        return delivery_date;
     }
 
     public void setDeliveryDate(Date deliveryDate) {
-        this.deliveryDate = deliveryDate;
+        this.delivery_date = deliveryDate;
     }
 
-    public Shipment(Long id, Account account, Address shippingAddress, Set<OrderLineItem> orderLineItems, Date shippedDate, Date deliveryDate) {
+    public Shipment(Long id, Account account, Address shippingAddress, Set<OrderLineItem> orderLineItems, Date shipped_date, Date delivery_date) {
         this.id = id;
         this.account = account;
         this.shippingAddress = shippingAddress;
         this.orderLineItems = orderLineItems;
-        this.shippedDate = shippedDate;
-        this.deliveryDate = deliveryDate;
+        this.shipped_date = shipped_date;
+        this.delivery_date = delivery_date;
     }
 
     Shipment() { super(); }
