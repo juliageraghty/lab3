@@ -21,13 +21,6 @@ public class ProductController {
         return productSaved;
     }
 
-    @PostMapping("amazoncommerce/product/load")
-    public Product createProduct() throws ParseException {
-        Product product = new Product((long)3, "Mac", "Apple Product", "pic", (long)1000);
-        productService.save(product);
-        return product;
-    }
-
     @GetMapping("amazoncommerce/product/{productId}")
     public Product get(@PathVariable("productId") Long productId) {
         Optional<Product> productRetrieved = productService.getProduct(productId);

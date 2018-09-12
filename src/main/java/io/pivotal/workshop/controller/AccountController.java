@@ -27,16 +27,6 @@ public class AccountController {
         return accountSaved;
     }
 
-    @PostMapping("amazoncommerce/account/load")
-    public Account createAccount() {
-        Set<Address> adressSet = new HashSet<>();
-        Address address = new Address((long)3, "Trumbul", "10637", "Evergreen Park", "IL", "60655", "USA");
-        adressSet.add(address);
-        Account account = new Account((long) 4, "Maeve", "Burke", "mburke@aol.com", adressSet);
-        Account accountSaved = accountService.save(account);
-        return accountSaved;
-    }
-
     @GetMapping("amazoncommerce/account/{accountId}")
     public Account get(@PathVariable("accountId") Long accountId) {
         Optional<Account> accountRetrieved = accountService.getAccount(accountId);

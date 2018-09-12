@@ -25,28 +25,6 @@ public class OrderLineItemController {
         return orderSaved;
     }
 
-    @PostMapping("amazoncommerce/orderLineItem/load")
-    public OrderLineItem createOrderLineItem() throws ParseException {
-        Set<Address> addressSet = new HashSet<>();
-        Address address = new Address((long) 2, "St. Louis", "10337", "Chicago", "IL", "60655", "USA");
-        addressSet.add(address);
-
-        Account account = new Account((long)3, "Amy", "Geraghty", "ageraghty@aol.com", addressSet);
-
-        String string = "2005-05-05";
-        DateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
-        Date date = format.parse(string);
-
-        Product product = new Product((long)2, "iPhone", "Apple Product", "pic", (long)300);
-
-        Set<OrderLineItem> orderLineItems = new HashSet<>();
-        Shipment shipment = new Shipment((long)2,account, address, orderLineItems, date, date);
-        OrderLineItem iphones = new OrderLineItem((long)2, product, 6, (long)3, (long) (6*3), shipment);
-        orderLineItems.add(iphones);
-        orderLineItemService.save(iphones);
-        return iphones;
-    }
-
     @GetMapping("amazoncommerce/orderLineItem/{orderLineItemId}")
     public OrderLineItem get(@PathVariable("orderLineItemId") Long orderLineItemId) {
         Optional<OrderLineItem> orderLineItemRetrieved = orderLineItemService.getOrderLineItem(orderLineItemId);

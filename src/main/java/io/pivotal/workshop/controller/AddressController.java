@@ -22,13 +22,6 @@ public class AddressController {
         return addressSaved;
     }
 
-    @PostMapping("amazoncommerce/address/load")
-    public Address createAddress() {
-        Address address = new Address((long)3, "Trumbul", "10637", "Evergreen Park", "IL", "60655", "USA");
-        Address addressSaved = addressService.save(address);
-        return addressSaved;
-    }
-
     @GetMapping("amazoncommerce/address/{addressId}")
     public Address get(@PathVariable("addressId") Long addressId) {
         Optional<Address> addressRetreieved = addressService.getAddress(addressId);
