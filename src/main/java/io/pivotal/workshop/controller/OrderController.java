@@ -1,15 +1,14 @@
 package io.pivotal.workshop.controller;
 
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import io.pivotal.workshop.domain.*;
 import io.pivotal.workshop.service.OrderService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.text.DateFormat;
+import java.math.BigInteger;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.*;
 
 @RestController
@@ -26,15 +25,15 @@ public class OrderController {
         return orderSaved;
     }
 
-    @GetMapping("amazoncommerce/ordersByAccount/{accountId}")
-    public List<Order> queryOrdersByAccount(@PathVariable("accountId") Long accountId) {
-        return orderService.queryOrdersByAccount(accountId);
+    @GetMapping("amazoncommerce/orderDetailsByAccount/{accountId}")
+    public List<Order> queryOrderDetailsByAccount(@PathVariable("accountId") Long accountId) {
+        return orderService.queryOrderDetailsByAccount(accountId);
     }
 
-//    @GetMapping("amazoncommerce/orderDetailsByAccount/{accountId}")
-//    public Object queryOrderDetailsByAccount(@PathVariable("accountId") Long accountId) {
-//        return orderService.queryOrderDetailsByAccount(accountId);
-//    }
+    @GetMapping("amazoncommerce/allOrdersByAccount/{accountId}")
+    public List<Object[]> queryAllOrdersByAccount(@PathVariable("accountId") Long accountId) throws JsonProcessingException, ParseException {
+        return orderService.queryAllOrdersByAccount(accountId);
+    }
 
     @GetMapping("amazoncommerce/order/{orderId}")
     public Order get(@PathVariable("orderId") Long orderId) {

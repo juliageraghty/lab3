@@ -32,7 +32,7 @@ public class ShipmentController {
         return shipment;
     }
 
-    @GetMapping("amazoncommerce/shipmentsByAccount/{accountId}")
+    @GetMapping("amazoncommerce/shipmentDetailsByAccount/{accountId}")
     public List<Shipment> queryShipmentsByAccount(@PathVariable("accountId") Long accountId) {
         return shipmentService.queryShipmentsByAccount(accountId);
     }
