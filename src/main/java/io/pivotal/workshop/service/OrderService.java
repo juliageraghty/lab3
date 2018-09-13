@@ -1,18 +1,13 @@
 package io.pivotal.workshop.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import io.pivotal.workshop.domain.Order;
-import io.pivotal.workshop.domain.OrderDetails;
 import io.pivotal.workshop.repository.OrderRepository;
+import io.pivotal.workshop.repository.OrderResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.swing.text.html.Option;
-import java.math.BigInteger;
-import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Service
@@ -42,10 +37,8 @@ public class OrderService {
         return orderRepository.queryOrderDetailsByAccount(accountId);
     }
 
-    public List<Object> queryAllOrdersByAccount(Long accountId) throws JsonProcessingException, ParseException {
-        List<Object> myList = orderRepository.queryAllOrdersByAccount(accountId);
-
-        return myList;
+    public List<OrderResponse> queryAllOrdersByAccount(Long accountId) {
+        return orderRepository.queryAllOrdersByAccount(accountId);
     }
 
 

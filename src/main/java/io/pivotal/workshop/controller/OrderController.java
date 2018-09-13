@@ -3,7 +3,9 @@ package io.pivotal.workshop.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import io.pivotal.workshop.domain.*;
+import io.pivotal.workshop.repository.OrderResponse;
 import io.pivotal.workshop.service.OrderService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,6 +17,7 @@ import java.util.*;
 public class OrderController {
     OrderService orderService;
 
+    @Autowired
     public OrderController(OrderService orderService) {
         this.orderService = orderService;
     }
@@ -31,7 +34,7 @@ public class OrderController {
     }
 
     @GetMapping("amazoncommerce/allOrdersByAccount/{accountId}")
-    public List<Object> queryAllOrdersByAccount(@PathVariable("accountId") Long accountId) throws JsonProcessingException, ParseException {
+    public List<OrderResponse> queryAllOrdersByAccount(@PathVariable("accountId") Long accountId) {
         return orderService.queryAllOrdersByAccount(accountId);
     }
 
