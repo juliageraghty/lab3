@@ -31,7 +31,7 @@ public class OrderController {
     }
 
     @GetMapping("amazoncommerce/allOrdersByAccount/{accountId}")
-    public List<Object[]> queryAllOrdersByAccount(@PathVariable("accountId") Long accountId) throws JsonProcessingException, ParseException {
+    public List<Object> queryAllOrdersByAccount(@PathVariable("accountId") Long accountId) throws JsonProcessingException, ParseException {
         return orderService.queryAllOrdersByAccount(accountId);
     }
 

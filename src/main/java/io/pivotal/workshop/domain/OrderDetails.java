@@ -10,11 +10,14 @@ public class OrderDetails {
 
     private Integer orderNumber;
     private Date orderDate;
+    private Long totalPrice;
 
     @JsonCreator
-    public OrderDetails(@JsonProperty("order_number") Integer orderNumber, @JsonProperty("order_date") Date orderDate) {
+    public OrderDetails(@JsonProperty("order_number") Integer orderNumber, @JsonProperty("order_date") Date orderDate,
+                        @JsonProperty("total_price") Long totalPrice) {
         this.orderNumber = orderNumber;
         this.orderDate = orderDate;
+        this.totalPrice = totalPrice;
     }
 
     public Integer getOrderNumber() {
@@ -31,5 +34,13 @@ public class OrderDetails {
 
     public void setOrderDate(Date orderDate) {
         this.orderDate = orderDate;
+    }
+
+    public Long getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(Long totalPrice) {
+        this.totalPrice = totalPrice;
     }
 }

@@ -2,13 +2,14 @@ package io.pivotal.workshop.service;
 
 import io.pivotal.workshop.domain.Address;
 import io.pivotal.workshop.repository.AddressRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
 @Service
 public class AddressService {
-
+    @Autowired
     AddressRepository addressRepository;
 
     public AddressService(AddressRepository addressRepository) {
