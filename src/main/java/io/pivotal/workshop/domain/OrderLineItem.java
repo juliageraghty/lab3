@@ -59,8 +59,8 @@ public class OrderLineItem {
     }
 
     public Long getTotalPrice() {
-        long longPrice = price * quantity;
-        return  longPrice;
+        long totalPrice = price * quantity;
+        return  totalPrice;
     }
 
     public Shipment getShipment() {
@@ -86,4 +86,10 @@ public class OrderLineItem {
     }
 
     OrderLineItem() { super(); }
+
+    @Override
+    public String toString() {
+        return "id:" + id + ", product:" + product.toString() + ", quantity:" + quantity + ", price:"
+                + price + ", totalPrice:" + totalPrice + "";
+    }
 }

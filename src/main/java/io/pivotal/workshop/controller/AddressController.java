@@ -1,10 +1,12 @@
 package io.pivotal.workshop.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import io.pivotal.workshop.domain.Address;
 import io.pivotal.workshop.service.AddressService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -27,6 +29,11 @@ public class AddressController {
         Optional<Address> addressRetreieved = addressService.getAddress(addressId);
         Address address = addressRetreieved.get();
         return address;
+    }
+
+    @GetMapping("amazoncommerce/queryAddress/{addressId}")
+    public Object queryAddress(@PathVariable("addressId") Long addressId) throws JsonProcessingException {
+        return addressService.queryAddress(addressId);
     }
 
     @PutMapping("amazoncommerce/address/{addressId}")

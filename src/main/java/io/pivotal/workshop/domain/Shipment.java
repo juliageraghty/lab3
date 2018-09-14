@@ -81,6 +81,8 @@ public class Shipment {
         this.delivery_date = deliveryDate;
     }
 
+    //public String getOrderLineItemsString() {return orderLineItems.toString();}
+
     public Shipment(Long id, Account account, Address shippingAddress, Set<OrderLineItem> orderLineItems, Date shipped_date, Date delivery_date) {
         this.id = id;
         this.account = account;
@@ -91,4 +93,11 @@ public class Shipment {
     }
 
     Shipment() { super(); }
+
+    @Override
+    public String toString() {
+        return "[Shipment: [id:" + id  + ", address:" + shippingAddress.toString() + ", orderLineItems:"
+                + orderLineItems.toString() + ", shipped_date:" + shipped_date.toString() + ", delivery_date:"
+                + delivery_date.toString() +"]";
+    }
 }

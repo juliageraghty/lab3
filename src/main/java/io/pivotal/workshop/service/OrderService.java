@@ -1,13 +1,12 @@
 package io.pivotal.workshop.service;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import io.pivotal.workshop.domain.Order;
+import io.pivotal.workshop.repository.OrderDetails;
 import io.pivotal.workshop.repository.OrderRepository;
 import io.pivotal.workshop.repository.OrderResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.text.ParseException;
 import java.util.*;
 
 @Service
@@ -33,12 +32,12 @@ public class OrderService {
         orderRepository.deleteById(orderId);
     }
 
-    public List<Order> queryOrderDetailsByAccount(Long accountId) {
-        return orderRepository.queryOrderDetailsByAccount(accountId);
-    }
-
     public List<OrderResponse> queryAllOrdersByAccount(Long accountId) {
         return orderRepository.queryAllOrdersByAccount(accountId);
+    }
+
+    public List<OrderDetails> queryOrderDetailsByAccount(Long accountId) {
+        return orderRepository.queryOrderDetailsByAccount(accountId);
     }
 
 

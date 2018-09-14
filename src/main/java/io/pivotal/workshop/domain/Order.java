@@ -2,6 +2,7 @@ package io.pivotal.workshop.domain;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -30,7 +31,7 @@ public class Order {
     @OneToOne
     @JoinColumn(name = "SHIPPING_ADDRESS_ID", nullable = false)
     @JsonIgnore
-    private Address shippingAddress;
+    private Address address;
 
     @OneToMany(fetch = FetchType.LAZY)
     @JsonIgnore
@@ -72,18 +73,18 @@ public class Order {
     }
 
     public Address getAddress() {
-        return shippingAddress;
+        return address;
     }
 
     public void setAddress(Address address) {
-        this.shippingAddress = shippingAddress;
+        this.address = address;
     }
 
-    public Set<OrderLineItem> getOrderLineItem() {
+    public Set<OrderLineItem> getOrderLineItems() {
         return orderLineItems;
     }
 
-    public void setOrderLineItem(Set<OrderLineItem> orderLineItems) {
+    public void setOrderLineItems(Set<OrderLineItem> orderLineItems) {
         this.orderLineItems = orderLineItems;
     }
 
@@ -95,15 +96,39 @@ public class Order {
         this.totalPrice = totalPrice;
     }
 
-    public Order(Long id, Account account, Long orderNumber, Date orderDate, Address shippingAddress, Set<OrderLineItem> orderLineItems, Long totalPrice) {
+    public String getStreet() { return address.street;}
+
+    public String getApartment(){ return address.apartment;}
+
+    public String getCity() {return address.city;}
+
+    public String getState(){return address.state;}
+
+    public String getZip() {return address.zip;}
+
+    public String getCountry() {return address.country;}
+
+    public Order(Long id, Account account, Long orderNumber, Date orderDate, Address address, Set<OrderLineItem> orderLineItems, Long totalPrice) {
         this.id = id;
         this.account = account;
         this.orderNumber = orderNumber;
         this.orderDate = orderDate;
-        this.shippingAddress = shippingAddress;
+        this.address = address;
         this.orderLineItems = orderLineItems;
         this.totalPrice = totalPrice;
     }
 
     Order() {super();}
+
+    @Override
+    public String toString() {
+        return "[orderNumber:" + orderNumber + ", orderDate:" + orderDate + ", shippingAddress:"
+                + address.toString()  + ", orderLineItems:"
+                + orderLineItems.toString() + ", totalPrice:" + totalPrice + "]";
+    }
+
+    @JsonValue
+    public String toJson() {
+        return this.orderNumber.toString()+", "+this.orderDate.toString()+", "+this.address.toString()+", "+this.orderLineItems.toString()+", /"+this.totalPrice+", /"+this.toString();
+    }
 }

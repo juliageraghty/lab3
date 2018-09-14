@@ -85,4 +85,10 @@ public class Address {
     }
 
     Address() { super(); }
+
+    @Override
+    public String toString() {
+        return "[Number:" + apartment + ", street:" + street + ", city:"
+                + city + ", state:" + state + ", zipcode:" + zip + ", country:" + country +"]";
+    }
 }

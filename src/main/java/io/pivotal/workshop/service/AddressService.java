@@ -1,5 +1,7 @@
 package io.pivotal.workshop.service;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.pivotal.workshop.domain.Address;
 import io.pivotal.workshop.repository.AddressRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,5 +30,10 @@ public class AddressService {
 
     public void deleteAddress(Long addressId) {
         addressRepository.deleteById(addressId);
+    }
+
+    public Object queryAddress(Long accountId) throws JsonProcessingException {
+
+        return new ObjectMapper().writeValueAsString(addressRepository.queryAddressByAccount(accountId));
     }
 }

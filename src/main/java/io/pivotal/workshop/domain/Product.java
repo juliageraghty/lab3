@@ -64,4 +64,10 @@ public class Product {
     }
 
     Product() { super(); }
+
+    @Override
+    public String toString() {
+        return "[id:" + id + ", name:" + name + ", description:" + description + ", image:"
+                + image + ", price:" + price + "]";
+    }
 }

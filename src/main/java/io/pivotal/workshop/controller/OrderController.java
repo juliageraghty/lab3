@@ -1,16 +1,17 @@
 package io.pivotal.workshop.controller;
 
-
 import com.fasterxml.jackson.core.JsonProcessingException;
 import io.pivotal.workshop.domain.*;
+import io.pivotal.workshop.repository.OrderDetails;
 import io.pivotal.workshop.repository.OrderResponse;
 import io.pivotal.workshop.service.OrderService;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.math.BigInteger;
-import java.text.ParseException;
+import java.io.IOException;
 import java.util.*;
 
 @RestController
@@ -28,12 +29,12 @@ public class OrderController {
         return orderSaved;
     }
 
-    @GetMapping("amazoncommerce/orderDetailsByAccount/{accountId}")
-    public List<Order> queryOrderDetailsByAccount(@PathVariable("accountId") Long accountId) {
+    @GetMapping("amazoncommerce/orderDetails/{accountId}")
+    public List<OrderDetails> queryOrderDetailsByAccount(@PathVariable("accountId") Long accountId) {
         return orderService.queryOrderDetailsByAccount(accountId);
     }
 
-    @GetMapping("amazoncommerce/allOrdersByAccount/{accountId}")
+    @GetMapping("amazoncommerce/allOrders/{accountId}")
     public List<OrderResponse> queryAllOrdersByAccount(@PathVariable("accountId") Long accountId) {
         return orderService.queryAllOrdersByAccount(accountId);
     }

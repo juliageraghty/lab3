@@ -1,14 +1,13 @@
 package io.pivotal.workshop.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import io.pivotal.workshop.domain.*;
-import io.pivotal.workshop.service.ProductService;
+import io.pivotal.workshop.repository.ShipmentDetails;
 import io.pivotal.workshop.service.ShipmentService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.io.IOException;
 import java.util.*;
 
 @RestController
@@ -32,8 +31,8 @@ public class ShipmentController {
         return shipment;
     }
 
-    @GetMapping("amazoncommerce/shipmentDetailsByAccount/{accountId}")
-    public List<Shipment> queryShipmentsByAccount(@PathVariable("accountId") Long accountId) {
+    @GetMapping("amazoncommerce/shipmentDetails/{accountId}")
+    public List<ShipmentDetails> queryShipmentsByAccount(@PathVariable("accountId") Long accountId) throws IOException {
         return shipmentService.queryShipmentsByAccount(accountId);
     }
 
