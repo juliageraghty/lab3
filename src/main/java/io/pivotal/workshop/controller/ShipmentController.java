@@ -1,13 +1,10 @@
 package io.pivotal.workshop.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import io.pivotal.workshop.domain.*;
-import io.pivotal.workshop.repository.ShipmentDetails;
 import io.pivotal.workshop.service.ShipmentService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.IOException;
 import java.util.*;
 
 @RestController
@@ -31,9 +28,10 @@ public class ShipmentController {
         return shipment;
     }
 
-    @GetMapping("amazoncommerce/shipmentDetails/{accountId}")
-    public List<ShipmentDetails> queryShipmentsByAccount(@PathVariable("accountId") Long accountId) throws IOException {
-        return shipmentService.queryShipmentsByAccount(accountId);
+
+    @GetMapping("amazoncommerce/shipmentDetails/{shipmentId}")
+    public List<ShipmentJSON> queryShipmentDetails(@PathVariable("shipmentId") Long shipmentId) {
+        return shipmentService.queryShipmentDetails(shipmentId);
     }
 
     @PutMapping("amazoncommerce/shipment/{shipmentId}")

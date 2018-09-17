@@ -1,16 +1,14 @@
 package io.pivotal.workshop.service;
 
 import io.pivotal.workshop.domain.Shipment;
-import io.pivotal.workshop.repository.ShipmentDetails;
+import io.pivotal.workshop.domain.ShipmentJSON;
 import io.pivotal.workshop.repository.ShipmentRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class ShipmentService {
-    @Autowired
     ShipmentRepository shipmentRepository;
 
     public ShipmentService(ShipmentRepository shipmentRepository) {
@@ -31,8 +29,9 @@ public class ShipmentService {
         shipmentRepository.deleteById(shipmentId);
     }
 
-    public List<ShipmentDetails> queryShipmentsByAccount(Long accountId) {
-        return shipmentRepository.queryShipmentsByAccount(accountId);
+
+    public List<ShipmentJSON> queryShipmentDetails(Long shipmentId) {
+        return shipmentRepository.queryShipmentDetails(shipmentId);
     }
 
 }

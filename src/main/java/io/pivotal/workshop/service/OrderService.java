@@ -1,17 +1,15 @@
 package io.pivotal.workshop.service;
 
 import io.pivotal.workshop.domain.Order;
-import io.pivotal.workshop.repository.OrderDetails;
+import io.pivotal.workshop.domain.OrderJSON;
 import io.pivotal.workshop.repository.OrderRepository;
 import io.pivotal.workshop.repository.OrderResponse;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
 
 @Service
 public class OrderService {
-    @Autowired
     OrderRepository orderRepository;
 
     public OrderService(OrderRepository orderRepository) {
@@ -36,9 +34,8 @@ public class OrderService {
         return orderRepository.queryAllOrdersByAccount(accountId);
     }
 
-    public List<OrderDetails> queryOrderDetailsByAccount(Long accountId) {
-        return orderRepository.queryOrderDetailsByAccount(accountId);
+    public List<OrderJSON> queryOrderDetails(Long orderId) {
+        return orderRepository.queryOrderDetails(orderId);
     }
-
 
 }

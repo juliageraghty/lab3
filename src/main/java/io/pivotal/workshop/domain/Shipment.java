@@ -25,6 +25,7 @@ public class Shipment {
 
     @OneToMany(fetch = FetchType.LAZY)
     @JsonIgnore
+    @JoinColumn(name="ORDER_LINE_ITEMS_ID")
     private Set<OrderLineItem> orderLineItems = new HashSet<>();
 
     @Temporal(TemporalType.DATE)
@@ -80,8 +81,6 @@ public class Shipment {
     public void setDeliveryDate(Date deliveryDate) {
         this.delivery_date = deliveryDate;
     }
-
-    //public String getOrderLineItemsString() {return orderLineItems.toString();}
 
     public Shipment(Long id, Account account, Address shippingAddress, Set<OrderLineItem> orderLineItems, Date shipped_date, Date delivery_date) {
         this.id = id;

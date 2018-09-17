@@ -11,7 +11,6 @@ import java.util.Optional;
 
 @Service
 public class AddressService {
-    @Autowired
     AddressRepository addressRepository;
 
     public AddressService(AddressRepository addressRepository) {

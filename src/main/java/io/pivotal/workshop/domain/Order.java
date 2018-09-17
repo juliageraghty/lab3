@@ -96,17 +96,6 @@ public class Order {
         this.totalPrice = totalPrice;
     }
 
-    public String getStreet() { return address.street;}
-
-    public String getApartment(){ return address.apartment;}
-
-    public String getCity() {return address.city;}
-
-    public String getState(){return address.state;}
-
-    public String getZip() {return address.zip;}
-
-    public String getCountry() {return address.country;}
 
     public Order(Long id, Account account, Long orderNumber, Date orderDate, Address address, Set<OrderLineItem> orderLineItems, Long totalPrice) {
         this.id = id;
@@ -127,8 +116,4 @@ public class Order {
                 + orderLineItems.toString() + ", totalPrice:" + totalPrice + "]";
     }
 
-    @JsonValue
-    public String toJson() {
-        return this.orderNumber.toString()+", "+this.orderDate.toString()+", "+this.address.toString()+", "+this.orderLineItems.toString()+", /"+this.totalPrice+", /"+this.toString();
-    }
 }

@@ -15,7 +15,6 @@ import java.util.Set;
 @RestController
 public class AccountController {
     AccountService accountService;
-    OrderService orderService;
 
     public AccountController(AccountService accountService) {
         this.accountService = accountService;

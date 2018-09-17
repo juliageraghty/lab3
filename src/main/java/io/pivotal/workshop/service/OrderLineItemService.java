@@ -10,7 +10,6 @@ import java.util.Optional;
 
 @Service
 public class OrderLineItemService {
-    @Autowired
     OrderLineItemRepository orderLineItemRepository;
 
     public OrderLineItemService(OrderLineItemRepository orderLineItemRepository) {
