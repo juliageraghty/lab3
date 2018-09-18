@@ -5,6 +5,7 @@ import io.pivotal.workshop.domain.OrderJSON;
 import io.pivotal.workshop.domain.OrdersOverview;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
@@ -13,7 +14,7 @@ import java.util.List;
 import static org.hibernate.loader.Loader.SELECT;
 
 @Repository
-public interface OrderRepository extends CrudRepository<Order, Long> {
+public interface OrderRepository extends PagingAndSortingRepository<Order, Long> {
     String query = "SELECT DISTINCT o.order_number AS orderNumber, o.order_date AS orderDate, o.total_price AS totalPrice, " +
             "a.street, a.apartment, a.city, a.state, a.zip, a.country AS country, c.name " +
             "FROM amazonTable.order_table o, amazonTable.order_table_order_line_items p, amazonTable.address_table a, amazonTable.order_line_item_table b, amazonTable.product_table c " +

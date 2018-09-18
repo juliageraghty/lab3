@@ -18,7 +18,7 @@ public class AccountController {
         this.accountService = accountService;
     }
 
-    @PostMapping("amazoncommerce/account/address/{addressId}")
+    @PostMapping("amazoncommerce/account/")
     public Account createAccount(@RequestBody Account account) {
         Account accountSaved = accountService.save(account);
         return accountSaved;
