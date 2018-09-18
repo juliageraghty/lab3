@@ -31,11 +31,6 @@ public class AddressController {
         return address;
     }
 
-    @GetMapping("amazoncommerce/queryAddress/{addressId}")
-    public Object queryAddress(@PathVariable("addressId") Long addressId) throws JsonProcessingException {
-        return addressService.queryAddress(addressId);
-    }
-
     @PutMapping("amazoncommerce/address/{addressId}")
     public Address updateAddress(@RequestBody Address address) {
         Address addressUpdated = addressService.save(address);

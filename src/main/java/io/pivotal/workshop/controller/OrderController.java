@@ -1,7 +1,6 @@
 package io.pivotal.workshop.controller;
 
 import io.pivotal.workshop.domain.*;
-import io.pivotal.workshop.repository.OrderResponse;
 import io.pivotal.workshop.service.OrderService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -28,7 +27,7 @@ public class OrderController {
     }
 
     @GetMapping("amazoncommerce/allOrders/{accountId}")
-    public List<OrderResponse> queryAllOrdersByAccount(@PathVariable("accountId") Long accountId) {
+    public List<OrdersOverview> queryAllOrdersByAccount(@PathVariable("accountId") Long accountId) {
         return orderService.queryAllOrdersByAccount(accountId);
     }
 

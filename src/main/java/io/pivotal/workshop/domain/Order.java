@@ -30,11 +30,9 @@ public class Order {
 
     @OneToOne
     @JoinColumn(name = "SHIPPING_ADDRESS_ID", nullable = false)
-    @JsonIgnore
     private Address address;
 
     @OneToMany(fetch = FetchType.LAZY)
-    @JsonIgnore
     private Set<OrderLineItem> orderLineItems = new HashSet<>();
 
     @Column(name= "total_price", nullable = false)
@@ -108,12 +106,5 @@ public class Order {
     }
 
     Order() {super();}
-
-    @Override
-    public String toString() {
-        return "[orderNumber:" + orderNumber + ", orderDate:" + orderDate + ", shippingAddress:"
-                + address.toString()  + ", orderLineItems:"
-                + orderLineItems.toString() + ", totalPrice:" + totalPrice + "]";
-    }
 
 }

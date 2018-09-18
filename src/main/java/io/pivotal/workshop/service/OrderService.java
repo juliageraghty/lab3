@@ -2,8 +2,8 @@ package io.pivotal.workshop.service;
 
 import io.pivotal.workshop.domain.Order;
 import io.pivotal.workshop.domain.OrderJSON;
+import io.pivotal.workshop.domain.OrdersOverview;
 import io.pivotal.workshop.repository.OrderRepository;
-import io.pivotal.workshop.repository.OrderResponse;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -30,7 +30,7 @@ public class OrderService {
         orderRepository.deleteById(orderId);
     }
 
-    public List<OrderResponse> queryAllOrdersByAccount(Long accountId) {
+    public List<OrdersOverview> queryAllOrdersByAccount(Long accountId) {
         return orderRepository.queryAllOrdersByAccount(accountId);
     }
 

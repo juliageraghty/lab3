@@ -25,7 +25,6 @@ public class Account {
     String emailAddress;
 
     @OneToMany(fetch = FetchType.LAZY)
-    @JsonIgnore
     private Set<Address> addresses = new HashSet<>();
 
     public Long getId() {
@@ -78,9 +77,4 @@ public class Account {
 
     public Account() { super();}
 
-    @Override
-    public String toString() {
-        return "OrderLineItem [id:" + id + ", firstName:" + firstName + ", lastName:" + lastName + ", emailAddress:"
-                + emailAddress + ", addresses:" + addresses.toString() + "]";
-    }
 }

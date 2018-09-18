@@ -87,9 +87,4 @@ public class OrderLineItem {
 
     OrderLineItem() { super(); }
 
-    @Override
-    public String toString() {
-        return "id:" + id + ", product:" + product.toString() + ", quantity:" + quantity + ", price:"
-                + price + ", totalPrice:" + totalPrice + "";
-    }
 }

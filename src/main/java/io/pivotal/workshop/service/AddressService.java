@@ -31,8 +31,4 @@ public class AddressService {
         addressRepository.deleteById(addressId);
     }
 
-    public Object queryAddress(Long accountId) throws JsonProcessingException {
-
-        return new ObjectMapper().writeValueAsString(addressRepository.queryAddressByAccount(accountId));
-    }
 }

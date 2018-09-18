@@ -8,9 +8,7 @@ import io.pivotal.workshop.service.OrderService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 @RestController
 public class AccountController {
@@ -20,7 +18,7 @@ public class AccountController {
         this.accountService = accountService;
     }
 
-    @PostMapping("amazoncommerce/account")
+    @PostMapping("amazoncommerce/account/address/{addressId}")
     public Account createAccount(@RequestBody Account account) {
         Account accountSaved = accountService.save(account);
         return accountSaved;

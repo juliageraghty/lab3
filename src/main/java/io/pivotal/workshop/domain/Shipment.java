@@ -25,7 +25,6 @@ public class Shipment {
 
     @OneToMany(fetch = FetchType.LAZY)
     @JsonIgnore
-    @JoinColumn(name="ORDER_LINE_ITEMS_ID")
     private Set<OrderLineItem> orderLineItems = new HashSet<>();
 
     @Temporal(TemporalType.DATE)
@@ -93,10 +92,4 @@ public class Shipment {
 
     Shipment() { super(); }
 
-    @Override
-    public String toString() {
-        return "[Shipment: [id:" + id  + ", address:" + shippingAddress.toString() + ", orderLineItems:"
-                + orderLineItems.toString() + ", shipped_date:" + shipped_date.toString() + ", delivery_date:"
-                + delivery_date.toString() +"]";
-    }
 }
