@@ -34,6 +34,7 @@ public class Order {
     private Set<OrderLineItem> orderLineItems = new HashSet<>();
 
     @OneToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name = "SHIPMENTS_ID", nullable = false)
     @JsonIgnore
     private Set<Shipment> shipments = new HashSet<>();
 

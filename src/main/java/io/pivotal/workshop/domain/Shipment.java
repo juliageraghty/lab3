@@ -24,7 +24,6 @@ public class Shipment {
     private Address shippingAddress;
 
     @OneToMany(fetch = FetchType.LAZY)
-    @JsonIgnore
     private Set<OrderLineItem> orderLineItems = new HashSet<>();
 
     @ManyToOne(fetch = FetchType.LAZY)

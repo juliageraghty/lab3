@@ -4,6 +4,7 @@ import io.pivotal.workshop.domain.Account;
 import io.pivotal.workshop.domain.Address;
 import io.pivotal.workshop.domain.Order;
 import io.pivotal.workshop.service.AccountService;
+import io.pivotal.workshop.service.AddressService;
 import io.pivotal.workshop.service.OrderService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,13 +14,19 @@ import java.util.*;
 @RestController
 public class AccountController {
     AccountService accountService;
+    AddressService addressService;
 
     public AccountController(AccountService accountService) {
         this.accountService = accountService;
     }
 
-    @PostMapping("amazoncommerce/account/")
-    public Account createAccount(@RequestBody Account account) {
+    @PostMapping("amazoncommerce/account/{addressId}")
+    public Account createAccount(@RequestBody Account account, @PathVariable("addressId") Long addressId) {
+        Optional<Address> addressRetreieved = addressService.getAddress(addressId);
+        Address desiredAddress = addressRetreieved.get();
+        Set<Address> myAdresses = new HashSet<>();
+        myAdresses.add(desiredAddress);
+        account.setAddresses(myAdresses);
         Account accountSaved = accountService.save(account);
         return accountSaved;
     }

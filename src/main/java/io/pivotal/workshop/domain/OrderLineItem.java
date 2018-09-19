@@ -24,7 +24,6 @@ public class OrderLineItem {
     Long totalPrice;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "SHIPMENT_ID")
     @JsonIgnore
     Shipment shipment;
 
