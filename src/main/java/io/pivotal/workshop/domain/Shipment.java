@@ -27,6 +27,10 @@ public class Shipment {
     @JsonIgnore
     private Set<OrderLineItem> orderLineItems = new HashSet<>();
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnore
+    private Order order;
+
     @Temporal(TemporalType.DATE)
     Date shipped_date;
 
@@ -81,13 +85,22 @@ public class Shipment {
         this.delivery_date = deliveryDate;
     }
 
-    public Shipment(Long id, Account account, Address shippingAddress, Set<OrderLineItem> orderLineItems, Date shipped_date, Date delivery_date) {
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
+    }
+
+    public Shipment(Long id, Account account, Address shippingAddress, Set<OrderLineItem> orderLineItems, Date shipped_date, Date delivery_date, Order order) {
         this.id = id;
         this.account = account;
         this.shippingAddress = shippingAddress;
         this.orderLineItems = orderLineItems;
         this.shipped_date = shipped_date;
         this.delivery_date = delivery_date;
+        this.order = order;
     }
 
     Shipment() { super(); }

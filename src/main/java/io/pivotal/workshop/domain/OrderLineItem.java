@@ -23,7 +23,8 @@ public class OrderLineItem {
     @Column(name= "total_price", nullable = false)
     Long totalPrice;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "SHIPMENT_ID")
     @JsonIgnore
     Shipment shipment;
 

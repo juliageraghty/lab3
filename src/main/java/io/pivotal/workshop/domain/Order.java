@@ -16,9 +16,7 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ACCOUNT_ID", nullable = false)
-    @JsonIgnore
+    @ManyToOne(fetch = FetchType.EAGER)
     Account account;
 
     @Column(name= "order_number", nullable = false)
@@ -34,6 +32,10 @@ public class Order {
 
     @OneToMany(fetch = FetchType.LAZY)
     private Set<OrderLineItem> orderLineItems = new HashSet<>();
+
+    @OneToMany(fetch = FetchType.LAZY)
+    @JsonIgnore
+    private Set<Shipment> shipments = new HashSet<>();
 
     @Column(name= "total_price", nullable = false)
     Long totalPrice;
@@ -94,8 +96,15 @@ public class Order {
         this.totalPrice = totalPrice;
     }
 
+    public Set<Shipment> getShipments() {
+        return shipments;
+    }
 
-    public Order(Long id, Account account, Long orderNumber, Date orderDate, Address address, Set<OrderLineItem> orderLineItems, Long totalPrice) {
+    public void setShipments(Set<Shipment> shipments) {
+        this.shipments = shipments;
+    }
+
+    public Order(Long id, Account account, Long orderNumber, Date orderDate, Address address, Set<OrderLineItem> orderLineItems, Long totalPrice, Set<Shipment> shipments) {
         this.id = id;
         this.account = account;
         this.orderNumber = orderNumber;
@@ -103,6 +112,7 @@ public class Order {
         this.address = address;
         this.orderLineItems = orderLineItems;
         this.totalPrice = totalPrice;
+        this.shipments = shipments;
     }
 
     Order() {super();}

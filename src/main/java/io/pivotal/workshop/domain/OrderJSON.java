@@ -12,17 +12,17 @@ public class OrderJSON {
     Date orderDate;
     Long totalPrice;
     Address address;
-    Long price;
+    String name;
 
     @JsonCreator
     public OrderJSON(@JsonProperty("orderNumber") Long orderNumber, @JsonProperty("orderDate") Date orderDate,
                      @JsonProperty("totalPrice") Long totalPrice, @JsonProperty("shippingAddress") Address address) {
-                     //@JsonProperty("price") Long price) {
+                     //@JsonProperty("name") String name) {
         this.orderNumber = orderNumber;
         this.orderDate = orderDate;
         this.totalPrice = totalPrice;
         this.address = address;
-        //this.price = price;
+        //this.name = name;
     }
 
     public Long getOrderNumber() {
@@ -57,11 +57,11 @@ public class OrderJSON {
         this.address = address;
     }
 
-    public Long getPrice() {
-        return price;
+    public String getName() {
+        return name;
     }
 
-    public void setPrice(Long price) {
-        this.price = price;
+    public void setName(String name) {
+        this.name = name;
     }
 }

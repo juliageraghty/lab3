@@ -28,16 +28,9 @@ public class ShipmentController {
         return shipment;
     }
 
-
-    @GetMapping("amazoncommerce/shipmentDetails/{shipmentId}")
-    public List<ShipmentJSON> queryShipmentDetails(@PathVariable("shipmentId") Long shipmentId) {
-        return shipmentService.queryShipmentDetails(shipmentId);
-    }
-
-    @PutMapping("amazoncommerce/shipment/{shipmentId}")
-    public Shipment updateShipment(@RequestBody Shipment shipment) {
-        Shipment shipmentUpdated = shipmentService.save(shipment);
-        return shipmentUpdated;
+    @GetMapping("amazoncommerce/account/{accountId}/shipmentDetails")
+    public List<ShipmentJSON> queryShipmentDetails(@PathVariable("accountId") Long accountId) {
+        return shipmentService.queryShipmentDetails(accountId);
     }
 
     @DeleteMapping("amazoncommerce/shipment/{shipmentId}")

@@ -13,14 +13,16 @@ public class ShipmentJSON {
     Date shippedDate;
     Date deliveryDate;
     Set<OrderLineItem> orderLineItems;
+    Long orderNumber;
 
     @JsonCreator
     public ShipmentJSON(@JsonProperty("account") Account account, @JsonProperty("shipped_date") Date shippedDate,
-                        @JsonProperty("delivery_date") Date deliveryDate) {
+                        @JsonProperty("delivery_date") Date deliveryDate, @JsonProperty("order_number") Long orderNumber) {
                         //@JsonProperty("orderLineItems") Set<OrderLineItem> orderLineItems) {
         this.account=account;
         this.shippedDate=shippedDate;
         this.deliveryDate=deliveryDate;
+        this.orderNumber=orderNumber;
         //this.orderLineItems=orderLineItems;
 
     }
@@ -47,6 +49,14 @@ public class ShipmentJSON {
 
     public void setDeliveryDate(Date deliveryDate) {
         this.deliveryDate = deliveryDate;
+    }
+
+    public Long getOrderNumber() {
+        return orderNumber;
+    }
+
+    public void setOrderNumber(Long orderNumber) {
+        this.orderNumber = orderNumber;
     }
 
     public Set<OrderLineItem> getOrderLineItems() {

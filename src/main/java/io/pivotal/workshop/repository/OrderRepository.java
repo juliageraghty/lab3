@@ -11,8 +11,6 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-import static org.hibernate.loader.Loader.SELECT;
-
 @Repository
 public interface OrderRepository extends PagingAndSortingRepository<Order, Long> {
     String query = "SELECT DISTINCT o.order_number AS orderNumber, o.order_date AS orderDate, o.total_price AS totalPrice, " +
@@ -24,7 +22,8 @@ public interface OrderRepository extends PagingAndSortingRepository<Order, Long>
             "FROM Order o WHERE o.account.id=:account_id ORDER BY o.orderDate DESC")
     List<OrdersOverview> queryAllOrdersByAccount(@Param("account_id") Long id);
 
-    @Query("SELECT NEW io.pivotal.workshop.domain.OrderJSON(o.orderNumber, o.orderDate, o.totalPrice, o.address) from Order o WHERE o.account.id=:order_id")
+    @Query("SELECT NEW io.pivotal.workshop.domain.OrderJSON(o.orderNumber, o.orderDate, o.totalPrice, o.address) " +
+            "from Order o WHERE o.account.id=:order_id ORDER BY o.orderDate DESC")
     List<OrderJSON> queryOrderDetails(@Param("order_id") Long id);
 
 

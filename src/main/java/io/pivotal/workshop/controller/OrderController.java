@@ -21,12 +21,12 @@ public class OrderController {
         return orderSaved;
     }
 
-    @GetMapping("amazoncommerce/orderDetails/{orderId}")
-    public List<OrderJSON> queryOrderDetails(@PathVariable("orderId") Long orderId) {
-        return orderService.queryOrderDetails(orderId);
+    @GetMapping("amazoncommerce/account/{accountId}/orderDetails")
+    public List<OrderJSON> queryOrderDetails(@PathVariable("accountId") Long accountId) {
+        return orderService.queryOrderDetails(accountId);
     }
 
-    @GetMapping("amazoncommerce/allOrders/{accountId}")
+    @GetMapping("amazoncommerce/account/{accountId}/allOrders")
     public List<OrdersOverview> queryAllOrdersByAccount(@PathVariable("accountId") Long accountId) {
         return orderService.queryAllOrdersByAccount(accountId);
     }
